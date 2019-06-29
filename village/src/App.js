@@ -18,8 +18,17 @@ class App extends Component {
           .then(res => { 
             this.setState({ smurfs: res.data }); 
        }) 
-         .catch(err => console.log(err)); 
+         .catch(error => console.error(error)); 
    } 
+
+   addSmurf = newSmurf => { 
+     axios
+      .post("http://localhost:3333/smurfs", newSmurf)
+      .then(res =>{
+        this.setState({smurfs: res.data})
+      })
+      .catch(error => console.error(error))
+   }
     
   // add any needed code to ensure that the smurfs collection exists on state and it has data coming from the server
   // Notice what your map function is looping over and returning inside of Smurfs.
@@ -27,7 +36,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <SmurfForm />
+        <SmurfForm addSmurf={this.addSmurf} />
         <Smurfs smurfs={this.state.smurfs} />
       </div>
     );
