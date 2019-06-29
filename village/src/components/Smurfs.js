@@ -9,6 +9,7 @@ class Smurfs extends Component {
         <h1>Smurf Village</h1>
         <ul>
           {this.props.smurfs.map(smurf => {
+            console.log(this.props)
             return (
               <Smurf
                 name={smurf.name}
